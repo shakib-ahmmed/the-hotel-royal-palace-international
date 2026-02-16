@@ -6,10 +6,10 @@ import Rooms from "./pages/Rooms";
 import RoomDetails from "./pages/RoomDetails";
 import Booking from "./pages/Booking";
 
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import CheckIn from "./pages/admin/CheckIn";
-import CheckOut from "./pages/admin/CheckOut";
-import AllBookings from "./pages/admin/AllBookings";
+import AdminDashboard from "./admin/AdminDashboard";
+import CheckIn from "./admin/CheckIn";
+import CheckOut from "./admin/CheckOut";
+import AllBookings from "./admin/AdminDashboard";
 
 function App() {
   return (

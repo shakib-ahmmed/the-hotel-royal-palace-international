@@ -1,4 +1,4 @@
-import rooms from "../data/rooms";
+
 import RoomCard from "../components/RoomCard";
 
 function Rooms() {
