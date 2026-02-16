@@ -13,7 +13,7 @@ function Navbar() {
                 {/* Logo */}
                 <Link to="/" className="flex items-center space-x-2">
                     <img src="/logo.png" alt="Logo" className="h-10 w-10" />
-                    <span className="text-2xl font-bold text-primary">Royal Palace</span>
+                    <span className="text-2xl font-bold text-primary">The Hotel Royal Palace</span>
                 </Link>
 
                 {/* Center Menu */}
