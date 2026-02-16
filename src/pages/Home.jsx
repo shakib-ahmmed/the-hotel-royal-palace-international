@@ -1,59 +1,102 @@
 import { Link } from "react-router-dom";
 
 function Home() {
+    // Placeholder rooms array for now
+    const rooms = Array.from({ length: 25 }, (_, i) => ({
+        id: i + 1,
+        name: `Room ${i + 1}`,
+        price: 150 + i * 5,
+        image: "/hotel-room.jpg", 
+    }));
+
     return (
-        <div>
+        <div className="font-sans">
 
             {/* HERO SECTION */}
-            <div
-                className="hero min-h-screen"
-                style={{
-                    backgroundImage: "url('/hotel.jpg')"
-                }}
-            >
+            <div className="relative w-full min-h-screen">
+                <img
+                    src="/hotel.jpg" 
+                    alt="Hotel"
+                    className="w-full h-full object-cover"
+                />
 
-                <div className="hero-overlay bg-black bg-opacity-60"></div>
-                <div className="hero-content text-center text-neutral-content">
-                    <div>
-                        <h1 className="mb-5 text-5xl font-bold">
-                            Welcome to Royal Palace
-                        </h1>
-                        <p className="mb-5">
-                            Luxury • Comfort • Elegance
-                        </p>
-                        <Link to="/rooms">
-                            <button className="btn btn-primary">
-                                Explore Rooms
-                            </button>
-                        </Link>
-                    </div>
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
+
+                {/* Hero Content */}
+                <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
+                    <h1 className="text-5xl md:text-7xl font-extrabold text-white drop-shadow-lg mb-4 animate-fadeIn">
+                        Welcome to Royal Palace
+                    </h1>
+                    <p className="text-lg md:text-2xl text-white drop-shadow-md mb-6 animate-fadeIn">
+                        Luxury • Comfort • Elegance • Unforgettable Experiences
+                    </p>
+                    <Link to="/rooms">
+                        <button className="btn btn-primary btn-lg rounded-full px-10 shadow-xl hover:scale-105 transform transition duration-300 animate-fadeIn">
+                            Explore Rooms
+                        </button>
+                    </Link>
                 </div>
             </div>
 
-            {/* SERVICES */}
-            <div className="p-10 bg-base-200">
-                <h2 className="text-3xl font-bold text-center mb-8">
-                    Our Services
+            {/* SERVICES SECTION */}
+            <section className="p-10 bg-base-100">
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+                    Our Premium Services
                 </h2>
-
                 <div className="grid md:grid-cols-3 gap-6">
-                    <div className="card bg-base-100 shadow-xl p-6">
-                        <h3 className="text-xl font-bold">Spa & Wellness</h3>
-                        <p>Relax with our world-class spa treatments.</p>
+                    <div className="card bg-base-100 shadow-xl p-6 text-center hover:scale-105 transform transition duration-300">
+                        <h3 className="text-xl font-bold mb-2">Spa & Wellness</h3>
+                        <p>Relax with world-class spa treatments and massages.</p>
                     </div>
-
-                    <div className="card bg-base-100 shadow-xl p-6">
-                        <h3 className="text-xl font-bold">Fine Dining</h3>
-                        <p>Experience gourmet dining at its finest.</p>
+                    <div className="card bg-base-100 shadow-xl p-6 text-center hover:scale-105 transform transition duration-300">
+                        <h3 className="text-xl font-bold mb-2">Fine Dining</h3>
+                        <p>Experience gourmet dining with exquisite flavors.</p>
                     </div>
-
-                    <div className="card bg-base-100 shadow-xl p-6">
-                        <h3 className="text-xl font-bold">Infinity Pool</h3>
-                        <p>Swim with breathtaking rooftop views.</p>
+                    <div className="card bg-base-100 shadow-xl p-6 text-center hover:scale-105 transform transition duration-300">
+                        <h3 className="text-xl font-bold mb-2">Infinity Pool</h3>
+                        <p>Swim with breathtaking rooftop views and luxury vibes.</p>
                     </div>
                 </div>
-            </div>
+            </section>
 
+            {/* ROOMS SECTION */}
+            <section className="p-10 bg-base-200">
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+                    Our Rooms
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {rooms.map((room) => (
+                        <div
+                            key={room.id}
+                            className="card bg-base-100 shadow-lg hover:shadow-xl transition duration-300"
+                        >
+                            <img
+                                src={room.image}
+                                alt={room.name}
+                                className="h-48 w-full object-cover rounded-t-lg"
+                            />
+                            <div className="p-4">
+                                <h3 className="text-lg font-bold">{room.name}</h3>
+                                <p className="text-gray-600">${room.price} / night</p>
+                                <Link
+                                    to={`/booking/${room.id}`}
+                                    className="btn btn-primary btn-sm mt-3 w-full"
+                                >
+                                    Book Now
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* FOOTER */}
+            <footer className="bg-base-100 p-6 mt-10 text-center">
+                <p className="text-sm text-gray-500">
+                    &copy; {new Date().getFullYear()} Royal Palace Hotel. All rights reserved.
+                </p>
+            </footer>
         </div>
     );
 }

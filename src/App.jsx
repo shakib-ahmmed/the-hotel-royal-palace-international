@@ -9,7 +9,7 @@ import Booking from "./pages/Booking";
 import AdminDashboard from "./admin/AdminDashboard";
 import CheckIn from "./admin/CheckIn";
 import CheckOut from "./admin/CheckOut";
-import AllBookings from "./admin/AdminDashboard";
+import AllBookings from "./admin/AllBooking";
 
 function App() {
   return (
