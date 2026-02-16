@@ -1,16 +1,34 @@
-# React + Vite
+🏨 Hotel Royal Palace - React Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, luxury hotel website built with React, Vite, Tailwind CSS, DaisyUI, and React Router.
+Includes features like dark/light theme toggle, responsive design, and room booking placeholders.
 
-Currently, two official plugins are available:
+🔹 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Responsive Navbar with logo, navigation links, login, and theme toggle
 
-## React Compiler
+Fullscreen Hero Section with luxury hotel image
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Services Section showcasing hotel amenities
 
-## Expanding the ESLint configuration
+Rooms Section with 25 placeholder rooms (ready for database integration)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Dark/Light Theme toggle using DaisyUI themes
+
+Fully responsive for mobile, tablet, and desktop
+
+Routing with React Router
+
+Ready for future backend integration for bookings and guest management
+
+🛠️ Tech Stack
+
+React
+
+Vite
+
+Tailwind CSS
+
+DaisyUI
+
+React Router DOM
