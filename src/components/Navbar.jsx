@@ -23,7 +23,7 @@ function Navbar() {
                     <Link to="/admin" className="hover:text-primary transition">Admin</Link>
                 </div>
 
-                {/* Right: Login + Theme */}
+                {/* Right: Login */}
                 <div className="hidden md:flex items-center space-x-4">
                     <Link to="/admin-login" className="btn btn-sm btn-outline">Login</Link>
                     <button onClick={toggleTheme} className="btn btn-sm btn-primary">

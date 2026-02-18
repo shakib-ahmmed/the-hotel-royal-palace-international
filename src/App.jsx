@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
 import Rooms from "./pages/Rooms";
@@ -9,24 +10,58 @@ import Booking from "./pages/Booking";
 import AdminDashboard from "./admin/AdminDashboard";
 import CheckIn from "./admin/CheckIn";
 import CheckOut from "./admin/CheckOut";
-import AllBookings from "./admin/AllBooking";
+import AllBookings from "./admin/AllBookings";
+import PrivateRoute from "./PrivateRoute";
+
 
 function App() {
   return (
     <>
       <Navbar />
+
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/rooms" element={<Rooms />} />
         <Route path="/rooms/:id" element={<RoomDetails />} />
         <Route path="/booking/:roomId" element={<Booking />} />
 
-        {/* Admin Routes */}
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/checkin" element={<CheckIn />} />
-        <Route path="/admin/checkout" element={<CheckOut />} />
-        <Route path="/admin/bookings" element={<AllBookings />} />
+        {/* Admin Routes - Private */}
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <AdminDashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/checkin"
+          element={
+            <PrivateRoute>
+              <CheckIn />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/checkout"
+          element={
+            <PrivateRoute>
+              <CheckOut />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/bookings"
+          element={
+            <PrivateRoute>
+              <AllBookings />
+            </PrivateRoute>
+          }
+        />
       </Routes>
+
+      <Footer />
     </>
   );
 }
