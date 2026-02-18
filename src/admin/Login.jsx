@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
-
+import { AuthContext } from "../context/AuthContext.jsx"; 
 function Login() {
     const navigate = useNavigate();
+    const { login } = useContext(AuthContext); 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -11,10 +12,11 @@ function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Dummy authentication logic (replace with API call)
+        
         if (email === "admin@example.com" && password === "password") {
+            login();          
             setError("");
-            navigate("/admin");
+            navigate("/admin"); 
         } else {
             setError("Invalid email or password");
         }
@@ -73,7 +75,10 @@ function Login() {
                     </form>
 
                     <p className="text-center text-sm text-gray-500 mt-4">
-                        Forgot your password? <a href="#" className="text-primary underline">Reset it</a>
+                        Forgot your password?{" "}
+                        <a href="#" className="text-primary underline">
+                            Reset it
+                        </a>
                     </p>
                 </div>
             </div>
