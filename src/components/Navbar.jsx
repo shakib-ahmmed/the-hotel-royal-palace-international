@@ -25,7 +25,7 @@ function Navbar() {
 
                 {/* Right: Login */}
                 <div className="hidden md:flex items-center space-x-4">
-                    <Link to="/admin-login" className="btn btn-sm btn-outline">Login</Link>
+                    <Link to="/login" className="btn btn-sm btn-outline">Login</Link>
                     <button onClick={toggleTheme} className="btn btn-sm btn-primary">
                         {theme === "light" ? "🌙 Dark" : "☀ Light"}
                     </button>
@@ -45,7 +45,7 @@ function Navbar() {
                     <Link to="/" className="block" onClick={() => setIsOpen(false)}>Home</Link>
                     <Link to="/rooms" className="block" onClick={() => setIsOpen(false)}>Rooms</Link>
                     <Link to="/admin" className="block" onClick={() => setIsOpen(false)}>Admin</Link>
-                    <Link to="/admin-login" className="btn btn-sm btn-outline w-full mt-2" onClick={() => setIsOpen(false)}>Login</Link>
+                    <Link to="/login" className="btn btn-sm btn-outline w-full mt-2" onClick={() => setIsOpen(false)}>Login</Link>
                     <button onClick={() => { toggleTheme(); setIsOpen(false); }} className="btn btn-sm btn-primary w-full mt-2">
                         {theme === "light" ? "🌙 Dark" : "☀ Light"}
                     </button>

@@ -10,9 +10,9 @@ import Booking from "./pages/Booking";
 import AdminDashboard from "./admin/AdminDashboard";
 import CheckIn from "./admin/CheckIn";
 import CheckOut from "./admin/CheckOut";
-import AllBookings from "./admin/AllBookings";
+import AllBookings from "./admin/AllBooking";
+import Login from "./admin/Login";
 import PrivateRoute from "./PrivateRoute";
-
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
         <Route path="/rooms" element={<Rooms />} />
         <Route path="/rooms/:id" element={<RoomDetails />} />
         <Route path="/booking/:roomId" element={<Booking />} />
+        <Route path="/login" element={<Login />} />
 
         {/* Admin Routes - Private */}
         <Route
