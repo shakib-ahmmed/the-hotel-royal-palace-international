@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import OurRooms from "../components/OurRooms";
 
 function Home() {
     // Placeholder rooms array for now
@@ -6,7 +7,7 @@ function Home() {
         id: i + 1,
         name: `Room ${i + 1}`,
         price: 150 + i * 5,
-        image: "/hotel-room.jpg", 
+        image: "/hotel-room.jpg",
     }));
 
     return (
@@ -15,7 +16,7 @@ function Home() {
             {/* HERO SECTION */}
             <div className="relative w-full min-h-screen">
                 <img
-                    src="/hotel.jpg" 
+                    src="/hotel.jpg"
                     alt="Hotel"
                     className="w-full h-full object-cover"
                 />
@@ -62,36 +63,10 @@ function Home() {
 
             {/* ROOMS SECTION */}
             <section className="p-10 bg-base-200">
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-                    Our Rooms
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {rooms.map((room) => (
-                        <div
-                            key={room.id}
-                            className="card bg-base-100 shadow-lg hover:shadow-xl transition duration-300"
-                        >
-                            <img
-                                src={room.image}
-                                alt={room.name}
-                                className="h-48 w-full object-cover rounded-t-lg"
-                            />
-                            <div className="p-4">
-                                <h3 className="text-lg font-bold">{room.name}</h3>
-                                <p className="text-gray-600">${room.price} / night</p>
-                                <Link
-                                    to={`/booking/${room.id}`}
-                                    className="btn btn-primary btn-sm mt-3 w-full"
-                                >
-                                    Book Now
-                                </Link>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                <OurRooms />
             </section>
 
-           
+
         </div>
     );
 }
