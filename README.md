@@ -2,8 +2,8 @@
 
 [Live Demo](https://hotel-royal-palace-4ae6c.web.app/)  
 
-![Project GIF](./assets/images/demo.gif)  
-*Animated preview of the website (replace `demo.gif` with actual screen capture GIF).*
+![Project GIF](./src/assets/FireShot%20Capture%20031%20-%20the-hotel-royal-palace--%20-%20[localhost].png)  
+
 
 ---
 
