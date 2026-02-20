@@ -1,10 +1,8 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import { ThemeContext } from "../context/ThemeContext";
 import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
-    const { theme, toggleTheme } = useContext(ThemeContext);
     const { isAuthenticated, logout } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
@@ -15,23 +13,23 @@ function Navbar() {
         navigate("/login");
     };
 
-    const linkStyle = "hover:text-primary transition font-medium";
-    const activeStyle = "text-primary font-semibold";
+    const linkStyle = "hover:text-indigo-400 transition font-medium";
+    const activeStyle = "text-indigo-500 font-semibold";
 
     return (
-        <nav className="bg-base-100 shadow-md sticky top-0 z-50">
-            <div className="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
+        <nav className="bg-gradient-to-r from-gray-800 via-gray-900 to-black shadow-md sticky top-0 z-50">
+            <div className="max-w-6x1 lg:ml-20 lg:mr-20 mx-auto flex justify-between items-center h-14 px-4 md:px-6">
 
                 {/* Logo */}
                 <NavLink to="/" className="flex items-center space-x-2">
                     <img src="/vite.svg" alt="Logo" className="h-10 w-10" />
-                    <span className="text-xl md:text-2xl font-bold text-primary">
-                        Royal Palace
+                    <span className="text-lg md:text-xl font-bold text-white">
+                        The Hotel Royal Palace
                     </span>
                 </NavLink>
 
-                {/* Desktop Menu */}
-                <div className="hidden md:flex items-center space-x-8">
+                {/* Desktop Menu - Centered */}
+                <div className="hidden md:flex space-x-10 justify-center flex-1">
                     <NavLink
                         to="/"
                         className={({ isActive }) => (isActive ? activeStyle : linkStyle)}
@@ -54,12 +52,15 @@ function Navbar() {
                     {isAuthenticated ? (
                         <button
                             onClick={handleLogout}
-                            className="btn btn-sm btn-outline"
+                            className="px-3 py-1 rounded-lg border border-indigo-500 hover:bg-indigo-500 hover:text-white transition"
                         >
                             Logout
                         </button>
                     ) : (
-                        <NavLink to="/login" className="btn btn-sm btn-outline">
+                        <NavLink
+                            to="/login"
+                            className="px-3 py-1 rounded-lg border border-indigo-500 hover:bg-indigo-500 hover:text-white transition"
+                        >
                             Login
                         </NavLink>
                     )}
@@ -67,7 +68,7 @@ function Navbar() {
 
                 {/* Mobile Hamburger */}
                 <button
-                    className="md:hidden text-2xl"
+                    className="md:hidden text-2xl text-white"
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? "✖" : "☰"}
@@ -76,11 +77,11 @@ function Navbar() {
 
             {/* Mobile Menu */}
             {isOpen && (
-                <div className="md:hidden bg-base-200 px-6 py-4 space-y-3 shadow-lg animate-slideDown">
+                <div className="md:hidden bg-gray-900 px-4 py-3 space-y-3 shadow-lg">
                     <NavLink
                         to="/"
                         onClick={() => setIsOpen(false)}
-                        className="block"
+                        className="block text-white hover:text-indigo-400 transition"
                     >
                         Home
                     </NavLink>
@@ -89,7 +90,7 @@ function Navbar() {
                         <NavLink
                             to="/admin"
                             onClick={() => setIsOpen(false)}
-                            className="block"
+                            className="block text-white hover:text-indigo-400 transition"
                         >
                             Admin
                         </NavLink>
@@ -98,7 +99,7 @@ function Navbar() {
                     {isAuthenticated ? (
                         <button
                             onClick={handleLogout}
-                            className="btn btn-sm btn-outline w-full"
+                            className="w-full px-3 py-2 rounded-lg border border-indigo-500 hover:bg-indigo-500 hover:text-white transition"
                         >
                             Logout
                         </button>
@@ -106,7 +107,7 @@ function Navbar() {
                         <NavLink
                             to="/login"
                             onClick={() => setIsOpen(false)}
-                            className="btn btn-sm btn-outline w-full"
+                            className="w-full px-3 py-2 rounded-lg border border-indigo-500 hover:bg-indigo-500 hover:text-white transition"
                         >
                             Login
                         </NavLink>
