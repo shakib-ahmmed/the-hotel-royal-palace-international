@@ -10,11 +10,6 @@ body {
   transition: all 0.3s ease;
 }
 
-/* Light Theme */
-body.light {
-  background-color: #f8fafc;
-  color: #0f172a;
-}
 
 /* Dark Theme */
 body.dark {
@@ -29,10 +24,6 @@ body.dark {
   transition: 0.3s;
 }
 
-body.light .card {
-  background: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
 body.dark .card {
   background: #1e293b;

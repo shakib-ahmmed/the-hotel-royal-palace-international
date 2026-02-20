@@ -1,34 +1,82 @@
-🏨 Hotel Royal Palace - React Web App
+# Hotel Royal Palace Website
 
-A modern, luxury hotel website built with React, Vite, Tailwind CSS, DaisyUI, and React Router.
-Includes features like dark/light theme toggle, responsive design, and room booking placeholders.
+[Live Demo](https://hotel-royal-palace-4ae6c.web.app/)  
 
-🔹 Features
+![Project GIF](./assets/images/demo.gif)  
+*Animated preview of the website (replace `demo.gif` with actual screen capture GIF).*
 
-Responsive Navbar with logo, navigation links, login, and theme toggle
+---
 
-Fullscreen Hero Section with luxury hotel image
+## 🏨 Overview
 
-Services Section showcasing hotel amenities
+**Hotel Royal Palace** is a modern, responsive hotel booking web application built with **React.js**. It showcases rooms, amenities, gallery, and contact information in a visually appealing and user-friendly interface.  
 
-Rooms Section with 25 placeholder rooms (ready for database integration)
+This project is ideal for hospitality businesses or personal portfolio projects demonstrating front-end React skills.
 
-Dark/Light Theme toggle using DaisyUI themes
+---
 
-Fully responsive for mobile, tablet, and desktop
+## 💡 Features
 
-Routing with React Router
+- ✅ Fully responsive layout (desktop, tablet, mobile)  
+- ✅ Homepage with hero banner and highlights  
+- ✅ Rooms & amenities showcase  
+- ✅ Image gallery with lightbox  
+- ✅ Booking form (static or API-ready)  
+- ✅ Contact form integration  
+- ✅ Navigation menu and smooth scrolling  
+- ✅ Footer with social links  
 
-Ready for future backend integration for bookings and guest management
+---
 
-🛠️ Tech Stack
+## 🛠️ Technologies Used
 
-React
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)  
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)  
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)  
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)  
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)  
 
-Vite
+- **React.js**  
+- **HTML5 & CSS3** (Bootstrap / Tailwind / SCSS)  
+- **JavaScript (ES6+)**  
+- **Firebase Hosting**  
 
-Tailwind CSS
+---
 
-DaisyUI
+## 🚀 Setup & Installation
 
-React Router DOM
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/your-username/hotel-royal-palace.git
+cd hotel-royal-palace
+
+
+Install dependencies
+
+npm install
+
+Run Locally
+
+npm start
+
+Build for Production
+
+npm run build
+
+Deploy to Firebase
+
+firebase login
+firebase init hosting
+firebase deploy
+
+
+🤝 Contributing
+
+Contributions are welcome! Please open a pull request or submit feature requests. Make sure to follow the coding style and best practices.
+
+
+
+📄 License
+
+This project is open-source and available under the MIT License.
