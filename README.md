@@ -42,42 +42,24 @@ This project is ideal for hospitality businesses or personal portfolio projects 
 - **Firebase Hosting**  
 
 ---
-
-## 🚀 Setup & Installation
-
 1. **Clone the repository**
 
 ```bash
 git clone https://github.com/your-username/hotel-royal-palace.git
 cd hotel-royal-palace
 
+```
+---
 
-Install dependencies
-
-npm install
-
-Run Locally
-
-npm start
-
-Build for Production
-
-npm run build
-
-- **Deploy Firebase** 
-
-firebase login
-firebase init hosting
-firebase deploy
-
-
-
-🤝 Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please open a pull request or submit feature requests. Make sure to follow the coding style and best practices.
 
+---
 
 
-📄 License
+## 📄 License
 
 This project is open-source and available under the MIT License.
+
+---
