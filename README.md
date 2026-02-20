@@ -71,12 +71,12 @@ firebase init hosting
 firebase deploy
 
 
-🤝 Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please open a pull request or submit feature requests. Make sure to follow the coding style and best practices.
 
 
 
-📄 License
+## 📄 License
 
 This project is open-source and available under the MIT License.
