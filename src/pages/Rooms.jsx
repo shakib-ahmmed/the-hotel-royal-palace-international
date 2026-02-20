@@ -5,7 +5,8 @@ function Rooms() {
     return (
         <div className="p-8">
             <h1 className="text-3xl font-bold mb-6">
-                Our Rooms
+                Our Roomss
+
             </h1>
 
             <div className="flex flex-wrap gap-6">

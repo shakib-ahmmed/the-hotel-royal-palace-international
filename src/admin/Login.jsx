@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
-import { AuthContext } from "../context/AuthContext.jsx"; 
+import { AuthContext } from "../context/AuthContext.jsx";
 function Login() {
     const navigate = useNavigate();
-    const { login } = useContext(AuthContext); 
+    const { login } = useContext(AuthContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -12,11 +12,11 @@ function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        
+
         if (email === "admin@example.com" && password === "password") {
-            login();          
+            login();
             setError("");
-            navigate("/admin"); 
+            navigate("/admin");
         } else {
             setError("Invalid email or password");
         }
@@ -24,7 +24,7 @@ function Login() {
 
     return (
         <>
-            <Navbar />
+
             <div className="min-h-screen flex items-center justify-center bg-base-200">
                 <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
                     <h2 className="text-2xl font-bold mb-6 text-center text-primary">
