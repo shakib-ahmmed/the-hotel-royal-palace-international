@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { FaTv, FaWifi, FaSnowflake, FaCoffee, FaBuilding, FaBath, FaCar, FaConciergeBell, FaTaxi, FaMoneyCheckAlt, FaPhone } from "react-icons/fa";
 
 function HeroSection() {
     const [time, setTime] = useState(new Date());
@@ -90,24 +91,15 @@ function HeroSection() {
 
     return (
         <section className="min-h-screen relative overflow-hidden text-white font-sans">
-            {/* Animated Stars / City Lights */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black">
-                <div className="absolute inset-0">
-                    {[...Array(100)].map((_, i) => (
-                        <span
-                            key={i}
-                            className="absolute bg-white rounded-full opacity-70 animate-star"
-                            style={{
-                                width: `${Math.random() * 2}px`,
-                                height: `${Math.random() * 2}px`,
-                                top: `${Math.random() * 100}%`,
-                                left: `${Math.random() * 100}%`,
-                                animationDelay: `${Math.random() * 5}s`,
-                            }}
-                        />
-                    ))}
-                </div>
-            </div>
+            {/* Background Image */}
+            <img
+                src="/hotel.jpg"
+                alt="Hotel Royal Palace"
+                className="absolute inset-0 w-full h-full object-cover"
+            />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/60"></div>
 
             {/* Hero Content */}
             <div className="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 py-12">
@@ -116,13 +108,18 @@ function HeroSection() {
                     <div className="md:flex-1 max-w-md">
                         <p className="text-gray-400 text-sm uppercase tracking-wide">Local time</p>
                         <h1 className="text-6xl font-extrabold mb-2">{formatTime(time)}</h1>
-                        <h2 className="text-3xl font-bold mb-4">Welcome to The Hotel Royal Palace</h2>
+                        <h2 className="text-3xl font-bold mb-4">
+                            Welcome to <br />
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-900 via-yellow-700 to-yellow-500">
+                                The Hotel Royal Palace
+                            </span>
+                        </h2>
                         <p className="text-indigo-300 text-lg mb-6">Ishwardi City, Bangladesh</p>
                         <p className="text-gray-400 mb-4">{weather.conditionText}</p>
 
-                        <div className="flex space-x-6">
+                        <div className="flex space-x-6 overflow-x-auto md:overflow-visible scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-700">
                             {weather.forecast.map(({ time, icon, temp }) => (
-                                <div key={time} className="flex flex-col items-center">
+                                <div key={time} className="flex flex-col items-center min-w-[60px]">
                                     <span className="text-sm text-gray-400">{time}</span>
                                     <span className="text-2xl">{icon}</span>
                                     <span className="text-lg font-medium">{temp}°C</span>
@@ -132,47 +129,60 @@ function HeroSection() {
                     </div>
 
                     {/* Right Cards */}
-                    <div className="md:flex-1 flex space-x-6 overflow-x-auto md:overflow-visible scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-700">
-                        <div className="bg-gradient-to-tr from-indigo-800/40 via-purple-800/40 to-pink-800/40 backdrop-blur-md rounded-xl shadow-lg p-6 min-w-[240px] cursor-pointer hover:scale-105 transition-transform">
-                            <h3 className="text-xl font-semibold mb-2">Explore Our Services</h3>
-                            <p className="text-gray-300 text-sm">
-                                Discover our exclusive amenities during your stay.
-                            </p>
+                    <div className="md:flex-1 flex flex-col md:flex-row space-x-0 md:space-x-6 overflow-x-auto md:overflow-visible scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-700 gap-6 mt-8 md:mt-0">
+                        {/* Services Card */}
+                        <div className="bg-gradient-to-tr from-indigo-800/40 via-purple-800/40 to-pink-800/40 backdrop-blur-md rounded-xl shadow-lg p-6 min-w-[280px] cursor-pointer hover:scale-105 transition-transform">
+                            <h3 className="text-xl font-semibold mb-4">Explore Our Services</h3>
+                            <div className="grid grid-cols-2 gap-3 text-gray-200 text-sm">
+                                <div className="flex items-center gap-2"><FaTv /> Cable TV</div>
+                                <div className="flex items-center gap-2"><FaWifi /> Wi-Fi</div>
+                                <div className="flex items-center gap-2"><FaSnowflake /> AC Room</div>
+                                <div className="flex items-center gap-2"><FaCoffee /> Complimentary Breakfast</div>
+                                <div className="flex items-center gap-2"><FaBuilding /> Conference Room</div>
+                                <div className="flex items-center gap-2"><FaBath /> Hot Water</div>
+                                <div className="flex items-center gap-2"><FaCar /> Car Parking</div>
+                                <div className="flex items-center gap-2"><FaConciergeBell /> 24/7 Service</div>
+                                <div className="flex items-center gap-2"><FaTaxi /> Car Service</div>
+                                <div className="flex items-center gap-2"><FaMoneyCheckAlt /> ATM Booths</div>
+                            </div>
                         </div>
 
-                        <div className="bg-gradient-to-tr from-green-800/40 via-teal-800/40 to-cyan-800/40 backdrop-blur-md rounded-xl shadow-lg p-6 min-w-[240px] cursor-pointer hover:scale-105 transition-transform">
+                        {/* Book Now Card */}
+                        <div className="bg-gradient-to-tr from-green-800/40 via-teal-800/40 to-cyan-800/40 backdrop-blur-md rounded-xl shadow-lg p-6 min-w-[280px] cursor-pointer hover:scale-105 transition-transform flex flex-col justify-between">
                             <h3 className="text-xl font-semibold mb-2">Book Now</h3>
-                            <p className="text-gray-300 text-sm">
-                                Secure your room with the best rate guaranteed.
+                            <p className="text-gray-300 text-sm mb-3">
+                                Reserve your room instantly with our secure online booking.
                             </p>
+                            <ul className="text-gray-200 text-sm space-y-1 mb-4">
+                                <li>✔ Best price guaranteed</li>
+                                <li>✔ Instant confirmation</li>
+                                <li>✔ 24/7 customer support</li>
+                            </ul>
+                            <a
+                                href="tel:+8801318345099"
+                                className="btn btn-primary w-full flex items-center justify-center gap-2"
+                            >
+                                <FaPhone /> Call Now
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 {/* Bottom Wi-Fi Info */}
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center mt-14 text-sm text-gray-400 border-t border-gray-700 pt-6">
-                    <div className="flex items-center space-x-2 mb-4 md:mb-0">
-                        <span className="font-semibold text-white">Wi-Fi Password:</span>
+                    <div className="flex items-center space-x-2 pr-2 mb-4 md:mb-0">
+                        <span className="font-semibold text-white">Wi-Fi Password :</span>
                         <span className="font-mono font-semibold">958PALACE</span>
                     </div>
-                    <img
-                        src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=958PALACE"
-                        alt="Wi-Fi QR Code"
-                        className="w-12 h-12"
-                    />
+                    <div className="gap-3">
+                        <img
+                            src="https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=958PALACE"
+                            alt="Wi-Fi QR Code"
+                            className="w-12 h-12"
+                        />
+                    </div>
                 </div>
             </div>
-
-            {/* Star animation */}
-            <style>{`
-        @keyframes star-blink {
-          0%, 100% { opacity: 0.7; transform: scale(1); }
-          50% { opacity: 0.2; transform: scale(0.5); }
-        }
-        .animate-star {
-          animation: star-blink 2s infinite;
-        }
-      `}</style>
         </section>
     );
 }

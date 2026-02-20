@@ -9,18 +9,10 @@ function Home() {
             <div className="relative w-full min-h-screen">
                 <HeroSection />
 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
-
-                {/* Hero Content */}
-
-                <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
-
-                </div>
             </div>
 
             {/* SERVICES SECTION */}
-            <section className="py-16 px-6 md:px-12 bg-base-100">
+            <section className="py-16 px-6 md:px-12">
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
                     Our Premium Services
                 </h2>
@@ -42,13 +34,13 @@ function Home() {
             </section>
 
             {/* ROOMS SECTION */}
-            <section className="py-16 px-6 md:px-12 bg-base-200">
+            <section className="py-16 px-6 md:px-12 ">
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
                     Our Rooms
                 </h2>
                 <OurRooms />
             </section>
-            <HeroSection />
+
         </div>
     );
 }

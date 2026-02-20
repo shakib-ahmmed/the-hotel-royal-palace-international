@@ -23,7 +23,7 @@ function Navbar() {
                 {/* Logo */}
                 <NavLink to="/" className="flex items-center space-x-2">
                     <img src="/vite.svg" alt="Logo" className="h-10 w-10" />
-                    <span className="text-lg md:text-xl font-bold text-white">
+                    <span className="bg-clip-text text-3xl text-transparent bg-gradient-to-r from-yellow-800 via-yellow-600 to-yellow-400">
                         The Hotel Royal Palace
                     </span>
                 </NavLink>
