@@ -13,23 +13,23 @@ function Navbar() {
         navigate("/login");
     };
 
-    const linkStyle = "hover:text-indigo-400 transition font-medium";
-    const activeStyle = "text-indigo-500 font-semibold";
+    const linkStyle = "text-gray-300 hover:text-yellow-400 transition font-medium";
+    const activeStyle = "text-yellow-500 font-semibold";
 
     return (
-        <nav className="bg-gradient-to-r from-gray-800 via-gray-900 to-black shadow-md sticky top-0 z-50">
-            <div className="max-w-6x1 lg:ml-20 lg:mr-20 mx-auto flex justify-between items-center h-14 px-4 md:px-6">
+        <nav className="backdrop-blur-md bg-black/70 border-b border-gray-800 sticky top-0 z-50 shadow-lg">
+            <div className="max-w-7xl mx-auto flex justify-between items-center h-16 px-6 md:px-12">
 
                 {/* Logo */}
                 <NavLink to="/" className="flex items-center space-x-2">
                     <img src="/vite.svg" alt="Logo" className="h-10 w-10" />
-                    <span className="bg-clip-text text-3xl text-transparent bg-gradient-to-r from-yellow-800 via-yellow-600 to-yellow-400">
+                    <span className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-700 via-red-700 to-yellow-500">
                         The Hotel Royal Palace
                     </span>
                 </NavLink>
 
-                {/* Desktop Menu - Centered */}
-                <div className="hidden md:flex space-x-10 justify-center flex-1">
+                {/* Desktop Menu */}
+                <div className="hidden md:flex flex-1 justify-center space-x-10">
                     <NavLink
                         to="/"
                         className={({ isActive }) => (isActive ? activeStyle : linkStyle)}
@@ -48,18 +48,18 @@ function Navbar() {
                 </div>
 
                 {/* Desktop Right Buttons */}
-                <div className="hidden md:flex items-center space-x-3">
+                <div className="hidden md:flex items-center space-x-4">
                     {isAuthenticated ? (
                         <button
                             onClick={handleLogout}
-                            className="px-3 py-1 rounded-lg border border-indigo-500 hover:bg-indigo-500 hover:text-white transition"
+                            className="px-4 py-2 rounded-lg border border-yellow-500 bg-black/40 hover:bg-yellow-500 hover:text-black transition font-medium"
                         >
                             Logout
                         </button>
                     ) : (
                         <NavLink
                             to="/login"
-                            className="px-3 py-1 rounded-lg border border-indigo-500 hover:bg-indigo-500 hover:text-white transition"
+                            className="px-4 py-2 rounded-lg border border-yellow-500 bg-black/40 hover:bg-yellow-500 hover:text-black transition font-medium"
                         >
                             Login
                         </NavLink>
@@ -68,7 +68,7 @@ function Navbar() {
 
                 {/* Mobile Hamburger */}
                 <button
-                    className="md:hidden text-2xl text-white"
+                    className="md:hidden text-2xl text-yellow-400"
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? "✖" : "☰"}
@@ -77,11 +77,11 @@ function Navbar() {
 
             {/* Mobile Menu */}
             {isOpen && (
-                <div className="md:hidden bg-gray-900 px-4 py-3 space-y-3 shadow-lg">
+                <div className="md:hidden bg-black/90 backdrop-blur-md px-6 py-4 space-y-3 border-t border-gray-700 shadow-xl rounded-b-lg">
                     <NavLink
                         to="/"
                         onClick={() => setIsOpen(false)}
-                        className="block text-white hover:text-indigo-400 transition"
+                        className="block text-gray-300 hover:text-yellow-400 transition font-medium"
                     >
                         Home
                     </NavLink>
@@ -90,7 +90,7 @@ function Navbar() {
                         <NavLink
                             to="/admin"
                             onClick={() => setIsOpen(false)}
-                            className="block text-white hover:text-indigo-400 transition"
+                            className="block text-gray-300 hover:text-yellow-400 transition font-medium"
                         >
                             Admin
                         </NavLink>
@@ -99,7 +99,7 @@ function Navbar() {
                     {isAuthenticated ? (
                         <button
                             onClick={handleLogout}
-                            className="w-full px-3 py-2 rounded-lg border border-indigo-500 hover:bg-indigo-500 hover:text-white transition"
+                            className="w-full px-4 py-2 rounded-lg border border-yellow-500 bg-black/40 hover:bg-yellow-500 hover:text-black transition font-medium"
                         >
                             Logout
                         </button>
@@ -107,7 +107,7 @@ function Navbar() {
                         <NavLink
                             to="/login"
                             onClick={() => setIsOpen(false)}
-                            className="w-full px-3 py-2 rounded-lg border border-indigo-500 hover:bg-indigo-500 hover:text-white transition"
+                            className="w-full px-4 py-2 rounded-lg border border-yellow-500 bg-black/40 hover:bg-yellow-500 hover:text-black transition font-medium"
                         >
                             Login
                         </NavLink>
