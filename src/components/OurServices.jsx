@@ -20,7 +20,6 @@ const OurServices = () => {
                         { icon: <FaBath className="text-indigo-400 mx-auto mb-3 text-5xl" />, title: "Hot Water", desc: "All rooms have instant hot water for showers and baths." },
                         { icon: <FaCar className="text-indigo-400 mx-auto mb-3 text-5xl" />, title: "Car Parking", desc: "Secure parking spaces available for all guests." },
                         { icon: <FaConciergeBell className="text-indigo-400 mx-auto mb-3 text-5xl" />, title: "24/7 Service", desc: "Our staff is available around the clock for your convenience." },
-                        { icon: <FaTaxi className="text-indigo-400 mx-auto mb-3 text-5xl" />, title: "Car Service", desc: "Arrange transportation easily during your stay." },
                         { icon: <FaMoneyCheckAlt className="text-indigo-400 mx-auto mb-3 text-5xl" />, title: "ATM Booths", desc: "Access banking services within the hotel premises." },
                         { icon: <FaCoffee className="text-indigo-400 mx-auto mb-3 text-5xl" />, title: "Laundry Service", desc: "Quick and reliable laundry service for guests." },
                     ].map((service, idx) => (
