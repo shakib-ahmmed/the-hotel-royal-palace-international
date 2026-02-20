@@ -5,7 +5,7 @@ function Rooms() {
     return (
         <div className="p-8">
             <h1 className="text-3xl font-bold mb-6">
-                Our Roomss
+                Our Rooms
 
             </h1>
 

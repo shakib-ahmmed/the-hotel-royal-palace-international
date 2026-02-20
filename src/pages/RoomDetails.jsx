@@ -2,7 +2,7 @@ import React from "react";
 
 const RoomDetails = () => {
     const room = {
-        title: "Deluxe Ocean View Room",
+        title: "Deluxe Room",
         price: 320,
         description:
             "Experience luxury and comfort in our Deluxe Ocean View Room with a breathtaking sea-facing balcony, king-size bed, and modern amenities.",
@@ -12,8 +12,6 @@ const RoomDetails = () => {
             "Free WiFi",
             "Air Conditioning",
             "Breakfast Included",
-            "Private Balcony",
-            "Swimming Pool Access",
             "24/7 Room Service",
         ],
     };
