@@ -3,9 +3,9 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
-import Booking from "./pages/Booking"; // optional, if still needed
 import Login from "./admin/Login";
 
+import AdminSidebar from "./admin/AdminSidebar";
 import AdminDashboard from "./admin/AdminDashboard";
 import CheckIn from "./admin/CheckIn";
 import CheckOut from "./admin/CheckOut";
@@ -22,39 +22,20 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
 
-        {/* Admin Routes - Private */}
+        {/* Admin Routes */}
         <Route
-          path="/admin"
+          path="/admin/*"
           element={
             <PrivateRoute>
-              <AdminDashboard />
+              <AdminSidebar />
             </PrivateRoute>
           }
-        />
-        <Route
-          path="/admin/checkin"
-          element={
-            <PrivateRoute>
-              <CheckIn />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/admin/checkout"
-          element={
-            <PrivateRoute>
-              <CheckOut />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/admin/bookings"
-          element={
-            <PrivateRoute>
-              <AllBookings />
-            </PrivateRoute>
-          }
-        />
+        >
+          <Route index element={<AdminDashboard />} />
+          <Route path="checkin" element={<CheckIn />} />
+          <Route path="checkout" element={<CheckOut />} />
+          <Route path="bookings" element={<AllBookings />} />
+        </Route>
       </Routes>
 
       <Footer />

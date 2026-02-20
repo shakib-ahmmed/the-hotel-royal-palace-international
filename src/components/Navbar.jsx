@@ -21,11 +21,12 @@ function Navbar() {
     return (
         <nav className="bg-base-100 shadow-md sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
+
                 {/* Logo */}
                 <NavLink to="/" className="flex items-center space-x-2">
                     <img src="/vite.svg" alt="Logo" className="h-10 w-10" />
                     <span className="text-xl md:text-2xl font-bold text-primary">
-                        The Hotel Royal Palace
+                        Royal Palace
                     </span>
                 </NavLink>
 
@@ -41,16 +42,14 @@ function Navbar() {
                     {isAuthenticated && (
                         <NavLink
                             to="/admin"
-                            className={({ isActive }) =>
-                                isActive ? activeStyle : linkStyle
-                            }
+                            className={({ isActive }) => (isActive ? activeStyle : linkStyle)}
                         >
                             Admin
                         </NavLink>
                     )}
                 </div>
 
-                {/* Right Side */}
+                {/* Desktop Right Buttons */}
                 <div className="hidden md:flex items-center space-x-3">
                     {isAuthenticated ? (
                         <button
@@ -66,7 +65,7 @@ function Navbar() {
                     )}
                 </div>
 
-                {/* Mobile Menu Button */}
+                {/* Mobile Hamburger */}
                 <button
                     className="md:hidden text-2xl"
                     onClick={() => setIsOpen(!isOpen)}
@@ -77,7 +76,7 @@ function Navbar() {
 
             {/* Mobile Menu */}
             {isOpen && (
-                <div className="md:hidden bg-base-200 px-6 py-4 space-y-3 shadow-lg">
+                <div className="md:hidden bg-base-200 px-6 py-4 space-y-3 shadow-lg animate-slideDown">
                     <NavLink
                         to="/"
                         onClick={() => setIsOpen(false)}
@@ -112,16 +111,6 @@ function Navbar() {
                             Login
                         </NavLink>
                     )}
-
-                    <button
-                        onClick={() => {
-                            toggleTheme();
-                            setIsOpen(false);
-                        }}
-                        className="btn btn-sm btn-primary w-full"
-                    >
-                        {theme === "light" ? "🌙 Dark Mode" : "☀ Light Mode"}
-                    </button>
                 </div>
             )}
         </nav>

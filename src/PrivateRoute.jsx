@@ -1,15 +1,17 @@
-import { Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { Navigate, useLocation } from "react-router-dom";
+import { AuthContext } from "./context/AuthContext";
 
-// Example: simple admin auth check (replace with real auth)
-const isAdminLoggedIn = () => {
-    // You can replace this with a real auth check, e.g., JWT token or context
-    return localStorage.getItem("adminToken") ? true : false;
-};
+function PrivateRoute({ children }) {
+    const { isAuthenticated } = useContext(AuthContext);
+    const location = useLocation();
 
-export default function PrivateRoute({ children }) {
-    if (!isAdminLoggedIn()) {
-        // Redirect to login page if not admin
-        return <Navigate to="/admin-login" replace />;
+    if (!isAuthenticated) {
+        // Redirect to login and store attempted location
+        return <Navigate to="/login" state={{ from: location }} replace />;
     }
+
     return children;
 }
+
+export default PrivateRoute;
