@@ -1,86 +1,152 @@
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import { ThemeContext } from "../context/ThemeContext.jsx";
-import { AuthContext } from "../context/AuthContext.jsx"; // Authentication context
+import { ThemeContext } from "../context/ThemeContext";
+import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
     const { theme, toggleTheme } = useContext(ThemeContext);
-    const { isAuthenticated, logout } = useContext(AuthContext); // auth state
+    const { isAuthenticated, logout } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        logout(); 
-        setIsOpen(false); 
+        logout();
+        setIsOpen(false);
         navigate("/login");
     };
 
+    const linkStyle =
+        "hover:text-primary transition font-medium";
+
+    const activeStyle =
+        "text-primary font-semibold";
+
     return (
         <nav className="bg-base-100 shadow-md sticky top-0 z-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
+            <div className="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
 
                 {/* Logo */}
-                <Link to="/" className="flex items-center space-x-2">
-                    <img src="/vite.svg" alt="Logo" className="h-12 w-12" />
-                    <span className="text-3xl font-bold text-primary">The Hotel Royal Palace</span>
-                </Link>
+                <NavLink to="/" className="flex items-center space-x-2">
+                    <img src="/vite.svg" alt="Logo" className="h-10 w-10" />
+                    <span className="text-xl md:text-2xl font-bold text-primary">
+                        Royal Palace
+                    </span>
+                </NavLink>
 
-                {/* Center Menu */}
-                <div className="hidden justify-center md:flex space-x-8">
-                    <Link to="/" className="hover:text-primary transition">Home</Link>
-                    <Link to="/rooms" className="hover:text-primary transition">Rooms</Link>
-                    <Link to="/admin" className="hover:text-primary transition">Admin</Link>
-                </div>
+                {/* Desktop Menu */}
+                <div className="hidden md:flex items-center space-x-8">
+                    <NavLink
+                        to="/"
+                        className={({ isActive }) =>
+                            isActive ? activeStyle : linkStyle
+                        }
+                    >
+                        Home
+                    </NavLink>
 
-                {/* Right: Login / Logout */}
-                <div className="hidden md:flex items-center space-x-4">
-                    {isAuthenticated ? (
-                        <button onClick={handleLogout} className="btn btn-sm btn-outline">Logout</button>
-                    ) : (
-                        <Link to="/login" className="btn btn-sm btn-outline">Login</Link>
+                    <NavLink
+                        to="/rooms"
+                        className={({ isActive }) =>
+                            isActive ? activeStyle : linkStyle
+                        }
+                    >
+                        Rooms
+                    </NavLink>
+
+                    {isAuthenticated && (
+                        <NavLink
+                            to="/admin"
+                            className={({ isActive }) =>
+                                isActive ? activeStyle : linkStyle
+                            }
+                        >
+                            Admin
+                        </NavLink>
                     )}
-                    <button onClick={toggleTheme} className="btn btn-sm btn-primary">
-                        {theme === "light" ? "🌙 Dark" : "☀ Light"}
-                    </button>
                 </div>
 
-                {/* Mobile Hamburger */}
-                <div className="md:hidden flex items-center">
-                    <button onClick={() => setIsOpen(!isOpen)} className="text-3xl" aria-label="Toggle menu">
-                        {isOpen ? "✖" : "☰"}
-                    </button>
-                </div>
-            </div>
-
-            {/* Mobile Menu */}
-            {isOpen && (
-                <div className="md:hidden bg-base-200 px-4 pt-4 pb-4 space-y-2 shadow-lg">
-                    <Link to="/" className="block" onClick={() => setIsOpen(false)}>Home</Link>
-                    <Link to="/rooms" className="block" onClick={() => setIsOpen(false)}>Rooms</Link>
-                    <Link to="/admin" className="block" onClick={() => setIsOpen(false)}>Admin</Link>
-
+                {/* Right Side */}
+                <div className="hidden md:flex items-center space-x-3">
                     {isAuthenticated ? (
                         <button
                             onClick={handleLogout}
-                            className="btn btn-sm btn-outline w-full mt-2"
+                            className="btn btn-sm btn-outline"
                         >
                             Logout
                         </button>
                     ) : (
-                        <Link
+                        <NavLink
                             to="/login"
-                            className="btn btn-sm btn-outline w-full mt-2"
-                            onClick={() => setIsOpen(false)}
+                            className="btn btn-sm btn-outline"
                         >
                             Login
-                        </Link>
+                        </NavLink>
+                    )}
+
+                    {/* <button
+                        onClick={toggleTheme}
+                        className="btn btn-sm btn-primary"
+                    >
+                        {theme === "light" ? "🌙" : "☀"}
+                    </button> */}
+                </div>
+
+                {/* Mobile Button */}
+                <button
+                    className="md:hidden text-2xl"
+                    onClick={() => setIsOpen(!isOpen)}
+                >
+                    {isOpen ? "✖" : "☰"}
+                </button>
+            </div>
+
+            {/* Mobile Menu */}
+            {isOpen && (
+                <div className="md:hidden bg-base-200 px-6 py-4 space-y-3 shadow-lg">
+
+                    <NavLink to="/" onClick={() => setIsOpen(false)} className="block">
+                        Home
+                    </NavLink>
+
+                    <NavLink to="/rooms" onClick={() => setIsOpen(false)} className="block">
+                        Rooms
+                    </NavLink>
+
+                    {isAuthenticated && (
+                        <NavLink
+                            to="/admin"
+                            onClick={() => setIsOpen(false)}
+                            className="block"
+                        >
+                            Admin
+                        </NavLink>
+                    )}
+
+                    {isAuthenticated ? (
+                        <button
+                            onClick={handleLogout}
+                            className="btn btn-sm btn-outline w-full"
+                        >
+                            Logout
+                        </button>
+                    ) : (
+                        <NavLink
+                            to="/login"
+                            onClick={() => setIsOpen(false)}
+                            className="btn btn-sm btn-outline w-full"
+                        >
+                            Login
+                        </NavLink>
                     )}
 
                     <button
-                        onClick={() => { toggleTheme(); setIsOpen(false); }}
-                        className="btn btn-sm btn-primary w-full mt-2"
+                        onClick={() => {
+                            toggleTheme();
+                            setIsOpen(false);
+                        }}
+                        className="btn btn-sm btn-primary w-full"
                     >
-                        {theme === "light" ? "🌙 Dark" : "☀ Light"}
+                        {theme === "light" ? "🌙 Dark Mode" : "☀ Light Mode"}
                     </button>
                 </div>
             )}
