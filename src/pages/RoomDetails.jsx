@@ -145,7 +145,7 @@ const RoomDetails = () => {
 
                         {/* WhatsApp Booking Button */}
                         <a
-                            href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello, I want to book ${room.name}`}
+                            href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello, Hello, I’m interested in booking the ${room.name} room. Please guide me through the booking process. Thank you!`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-3 px-8 py-4 rounded-full 
