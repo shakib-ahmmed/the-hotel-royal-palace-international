@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const rooms = [
     {
@@ -38,6 +39,7 @@ const OurRooms = () => {
         setAnimate(true);
     }, []);
 
+    const navigate = useNavigate();
     return (
         <section className="relative py-20 md:py-28 bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -75,9 +77,22 @@ const OurRooms = () => {
                                         <p className="text-gray-300 text-lg sm:text-xl mb-4 sm:mb-6">
                                             {room.price}
                                         </p>
-                                        <button className="group px-6 py-3 bg-white text-black font-semibold rounded-full flex items-center gap-2 hover:bg-gray-200 transition">
-                                            Explore Room
-                                            <span className="group-hover:translate-x-1 transition">→</span>
+                                        <button
+                                            onClick={() => navigate(`/room/${room.id}`)}
+                                            className="group relative px-8 py-3 font-semibold rounded-full 
+    bg-gradient-to-r from-yellow-500 via-yellow-400 to-amber-600 
+    text-black tracking-wide 
+    shadow-lg shadow-yellow-600/40
+    hover:shadow-yellow-500/70
+    transition-all duration-500 
+    overflow-hidden w-full sm:w-auto"
+                                        >
+                                            <span className="relative z-10 flex items-center gap-2">
+                                                Explore Room
+                                                <span className="group-hover:translate-x-1 transition duration-300">→</span>
+                                            </span>
+
+                                            <span className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
                                         </button>
                                     </div>
                                 </div>
@@ -111,9 +126,22 @@ const OurRooms = () => {
                                         <p className="text-gray-300 text-lg sm:text-xl mb-4 sm:mb-6">
                                             {room.price}
                                         </p>
-                                        <button className="group px-6 py-3 bg-white text-black font-semibold rounded-full flex items-center gap-2 hover:bg-gray-200 transition">
-                                            Explore Room
-                                            <span className="group-hover:translate-x-1 transition">→</span>
+                                        <button
+                                            onClick={() => navigate(`/room/${room.id}`)}
+                                            className="group relative px-8 py-3 font-semibold rounded-full 
+    bg-gradient-to-r from-yellow-500 via-yellow-400 to-amber-600 
+    text-black tracking-wide 
+    shadow-lg shadow-yellow-600/40
+    hover:shadow-yellow-500/70
+    transition-all duration-500 
+    overflow-hidden w-full sm:w-auto"
+                                        >
+                                            <span className="relative z-10 flex items-center gap-2">
+                                                Explore Room
+                                                <span className="group-hover:translate-x-1 transition duration-300">→</span>
+                                            </span>
+
+                                            <span className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
                                         </button>
                                     </div>
                                 </div>
