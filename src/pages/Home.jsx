@@ -16,7 +16,6 @@ function Home() {
 
             </div>
 
-
             {/* ROOMS SECTION */}
             <section className="py-16 px-6 md:px-12 ">
                 <OurRooms />

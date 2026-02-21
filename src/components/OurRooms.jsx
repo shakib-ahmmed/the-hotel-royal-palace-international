@@ -46,7 +46,6 @@ const OurRooms = () => {
                     Our Luxury Rooms
                 </h2>
 
-                {/* Vertical Divider - only on large screens */}
                 <div className="hidden lg:block absolute left-1/2 top-32 bottom-16 w-[2px] bg-gradient-to-b from-transparent via-white to-transparent opacity-30 transform -translate-x-1/2"></div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
@@ -76,8 +75,9 @@ const OurRooms = () => {
                                         <p className="text-gray-300 text-lg sm:text-xl mb-4 sm:mb-6">
                                             {room.price}
                                         </p>
-                                        <button className="px-6 sm:px-8 py-2 sm:py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition w-full sm:w-auto">
+                                        <button className="group px-6 py-3 bg-white text-black font-semibold rounded-full flex items-center gap-2 hover:bg-gray-200 transition">
                                             Explore Room
+                                            <span className="group-hover:translate-x-1 transition">→</span>
                                         </button>
                                     </div>
                                 </div>
@@ -111,8 +111,9 @@ const OurRooms = () => {
                                         <p className="text-gray-300 text-lg sm:text-xl mb-4 sm:mb-6">
                                             {room.price}
                                         </p>
-                                        <button className="px-6 sm:px-8 py-2 sm:py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition w-full sm:w-auto">
+                                        <button className="group px-6 py-3 bg-white text-black font-semibold rounded-full flex items-center gap-2 hover:bg-gray-200 transition">
                                             Explore Room
+                                            <span className="group-hover:translate-x-1 transition">→</span>
                                         </button>
                                     </div>
                                 </div>

@@ -1,81 +1,119 @@
 import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
+
+const rooms = [
+    {
+        id: 1,
+        name: "Deluxe Room",
+        price: 2500,
+        image: "/Deluxe.JPG",
+        description: "Spacious deluxe room with balcony, AC, free WiFi and breakfast included.",
+        size: "350 sq ft",
+        bed: "1 King Bed",
+        guests: "2 Adults",
+    },
+    {
+        id: 2,
+        name: "Modern King",
+        price: 4000,
+        image: "/Modern_King.JPG",
+        description: "Modern luxury king room with city view and premium interior.",
+        size: "450 sq ft",
+        bed: "1 King Bed",
+        guests: "2-3 Adults",
+    },
+    {
+        id: 3,
+        name: "Modern Queen",
+        price: 5000,
+        image: "/Modern-Queen.jpg",
+        description: "Premium queen room with elegant lighting and comfortable workspace.",
+        size: "500 sq ft",
+        bed: "1 Queen Bed",
+        guests: "2 Adults",
+    },
+    {
+        id: 4,
+        name: "Couple Deluxe",
+        price: 3500,
+        image: "/Couple-Deluxe.JPG",
+        description: "Romantic couple suite with decorative lighting and breakfast.",
+        size: "400 sq ft",
+        bed: "1 King Bed",
+        guests: "2 Adults",
+    },
+];
 
 const RoomDetails = () => {
-    const room = {
-        title: "Deluxe Room",
-        price: 320,
-        description:
-            "Experience luxury and comfort in our Deluxe Ocean View Room with a breathtaking sea-facing balcony, king-size bed, and modern amenities.",
-        image:
-            "https://images.unsplash.com/photo-1566665797739-1674de7a421a",
-        amenities: [
-            "Free WiFi",
-            "Air Conditioning",
-            "Breakfast Included",
-            "24/7 Room Service",
-        ],
-    };
+    const { id } = useParams();
+    const navigate = useNavigate();
+
+    const room = rooms.find((r) => r.id === parseInt(id));
+
+    if (!room) {
+        return (
+            <div className="text-white text-center py-20 text-2xl">
+                Room Not Found
+            </div>
+        );
+    }
 
     return (
-        <div className="min-h-screen bg-gray-50 py-10 px-4">
-            <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-8">
+        <section className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white py-20 px-4">
+            <div className="max-w-6xl mx-auto">
 
-                {/* Left Section */}
-                <div className="lg:col-span-2 bg-white rounded-2xl shadow-md overflow-hidden">
+                <button
+                    onClick={() => navigate(-1)}
+                    className="mb-10 text-gray-400 hover:text-white"
+                >
+                    ← Back
+                </button>
 
+                <div className="grid md:grid-cols-2 gap-10 items-center">
                     <img
                         src={room.image}
-                        alt={room.title}
-                        className="w-full h-80 object-cover"
+                        alt={room.name}
+                        className="rounded-2xl shadow-2xl w-full h-[400px] object-cover"
                     />
 
-                    <div className="p-6">
-                        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-                            {room.title}
-                        </h1>
+                    <div>
+                        <h1 className="text-4xl font-bold mb-4">{room.name}</h1>
+                        <p className="text-gray-300 mb-6">{room.description}</p>
 
-                        <p className="text-gray-600 mb-6">
-                            {room.description}
-                        </p>
-
-                        {/* Amenities */}
-                        <h2 className="text-xl font-semibold mb-3 text-gray-800">
-                            Amenities
-                        </h2>
-
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                            {room.amenities.map((item, index) => (
-                                <div
-                                    key={index}
-                                    className="bg-gray-100 px-4 py-2 rounded-lg text-sm text-gray-700"
-                                >
-                                    ✓ {item}
-                                </div>
-                            ))}
+                        <div className="space-y-2 mb-6 text-lg">
+                            <p><strong>Room Size:</strong> {room.size}</p>
+                            <p><strong>Bed Type:</strong> {room.bed}</p>
+                            <p><strong>Guests:</strong> {room.guests}</p>
+                            <p className="text-2xl font-semibold text-white mt-4">
+                                {room.price} BDT / night
+                            </p>
                         </div>
+
+                        <button
+                            onClick={() => alert("Booking Confirmed!")}
+                            className="px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition"
+                        >
+                            Book Now
+                        </button>
                     </div>
                 </div>
 
-                {/* Right Section - Booking Card */}
-                <div className="bg-white rounded-2xl shadow-md p-6 h-fit sticky top-10">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                        ${room.price}
-                        <span className="text-base font-normal text-gray-500">
-                            {" "} / night
-                        </span>
-                    </h2>
+                {/* Booking Information Section */}
+                <div className="mt-20 backdrop-blur-lg bg-white/10 p-10 rounded-2xl border border-white/20">
+                    <h2 className="text-3xl font-bold mb-6">Booking Information</h2>
 
-                    <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition shadow-md mb-4">
-                        Book Now
-                    </button>
-
-                    <div className="text-sm text-gray-500 text-center">
-                        Free cancellation within 24 hours
-                    </div>
+                    <ul className="space-y-3 text-gray-300">
+                        <li>✔ Free Cancellation within 24 hours</li>
+                        <li>✔ Check-in: 2:00 PM</li>
+                        <li>✔ Check-out: 12:00 PM</li>
+                        <li>✔ Free High-Speed WiFi</li>
+                        <li>✔ Complimentary Breakfast</li>
+                        <li>✔ 24/7 Room Service</li>
+                    </ul>
                 </div>
 
             </div>
-        </div>
+        </section>
     );
 };
 
