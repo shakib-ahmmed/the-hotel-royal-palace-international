@@ -11,6 +11,7 @@ import CheckIn from "./admin/CheckIn";
 import CheckOut from "./admin/CheckOut";
 import AllBookings from "./admin/AllBooking";
 import PrivateRoute from "./PrivateRoute";
+import RoomDetails from "./pages/RoomDetails";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/roomdetails/:id" element={<RoomDetails />} />
 
         {/* Admin Routes */}
         <Route

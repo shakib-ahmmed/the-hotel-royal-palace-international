@@ -78,7 +78,7 @@ const OurRooms = () => {
                                             {room.price}
                                         </p>
                                         <button
-                                            onClick={() => navigate(`/room/${room.id}`)}
+                                            onClick={() => navigate(`/roomdetails/${room.id}`)}
                                             className="group relative px-8 py-3 font-semibold rounded-full 
     bg-gradient-to-r from-yellow-500 via-yellow-400 to-amber-600 
     text-black tracking-wide 
@@ -127,7 +127,7 @@ const OurRooms = () => {
                                             {room.price}
                                         </p>
                                         <button
-                                            onClick={() => navigate(`/room/${room.id}`)}
+                                            onClick={() => navigate(`/roomdetails/${room.id}`)}
                                             className="group relative px-8 py-3 font-semibold rounded-full 
     bg-gradient-to-r from-yellow-500 via-yellow-400 to-amber-600 
     text-black tracking-wide 
