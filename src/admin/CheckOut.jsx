@@ -2,8 +2,7 @@
 import React from 'react';
 
 // Example guest data (replace with props or API later)
-const guests = [
-    {
+const guests =    {
         id: 1,
         name: "John Doe",
         room: 101,
@@ -11,14 +10,6 @@ const guests = [
         checkIn: "2026-02-20",
         checkOut: "2026-02-23"
     },
-    {
-        id: 2,
-        name: "Jane Smith",
-        room: 102,
-        email: "jane@example.com",
-        checkIn: "2026-02-21",
-        checkOut: "2026-02-24"
-    }
 ];
 
 const CheckOut = () => {
@@ -68,3 +59,7 @@ const CheckOut = () => {
 export default CheckOut;
 
 + 
++0
+++x
++X
++
