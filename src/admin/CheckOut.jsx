@@ -13,16 +13,7 @@ const CheckOut = () => {
       payment: "Pending",
       status: "Pending",
     },
-    {
-      id: 3,
-      fullName: "Michael Lee",
-      room: "410",
-      email: "michael@example.com",
-      checkIn: "2026-02-22",
-      checkOut: "2026-02-24",
-      payment: "Paid",
-      status: "Checked-Out",
-    },
+  
   ];
 
   return (
