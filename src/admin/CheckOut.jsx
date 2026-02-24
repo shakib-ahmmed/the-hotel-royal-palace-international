@@ -2,16 +2,7 @@ import React from "react";
 
 const CheckOut = () => {
   const guests = [
-    {
-      id: 1,
-      fullName: "John Doe",
-      room: "502",
-      email: "john@example.com",
-      checkIn: "2026-02-22",
-      checkOut: "2026-02-25",
-      payment: "Paid",
-      status: "Checked-Out",
-    },
+    
     {
       id: 2,
       fullName: "Sarah Smith",
