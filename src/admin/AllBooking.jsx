@@ -20,9 +20,9 @@ const initialBookings = [
 ];
 
 const statusColors = {
-    Confirmed: "bg-green-100 text-green-600",
-    Pending: "bg-yellow-100 text-yellow-600",
-    Cancelled: "bg-red-100 text-red-600",
+    Confirmed: "bg-green-500/20 text-green-400",
+    Pending: "bg-yellow-500/20 text-yellow-400",
+    Cancelled: "bg-red-500/20 text-red-400",
 };
 
 const AllBooking = () => {
@@ -71,50 +71,52 @@ const AllBooking = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 p-6">
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white p-6">
             <div className="max-w-7xl mx-auto">
 
                 {/* Header */}
-                <div className="flex justify-between items-center mb-8">
-                    <h1 className="text-3xl font-bold text-gray-800">
-                        All Bookings ({bookings.length})
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-10">
+                    <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                        All Bookings
                     </h1>
                     <button
                         onClick={() => setShowForm(true)}
-                        className="px-5 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
+                        className="px-6 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:scale-105 transition transform shadow-lg"
                     >
                         + New Booking
                     </button>
                 </div>
 
-                {/* Booking Cards */}
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {/* Booking Grid */}
+                <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
                     {bookings.map((booking) => (
                         <div
                             key={booking.id}
-                            className="bg-white rounded-2xl shadow-md p-6"
+                            className="bg-gray-800/60 backdrop-blur-md border border-gray-700 rounded-2xl p-6 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300"
                         >
-                            <div className="flex justify-between mb-3">
-                                <h2 className="font-semibold text-lg">
+                            <div className="flex justify-between items-center mb-4">
+                                <h2 className="text-lg font-semibold">
                                     {booking.service}
                                 </h2>
                                 <span
-                                    className={`px-3 py-1 text-sm rounded-full ${statusColors[booking.status]}`}
+                                    className={`px-3 py-1 text-xs rounded-full font-medium ${statusColors[booking.status]}`}
                                 >
                                     {booking.status}
                                 </span>
                             </div>
 
-                            <p><strong>Customer:</strong> {booking.name}</p>
-                            <p><strong>Date:</strong> {booking.date}</p>
-                            <p><strong>Price:</strong> ${booking.price}</p>
+                            <div className="space-y-2 text-gray-300 text-sm">
+                                <p><span className="text-gray-400">Customer:</span> {booking.name}</p>
+                                <p><span className="text-gray-400">Date:</span> {booking.date}</p>
+                                <p><span className="text-gray-400">Price:</span> ${booking.price}</p>
+                            </div>
 
                             {booking.status !== "Cancelled" && (
                                 <button
                                     onClick={() => handleCancelBooking(booking.id)}
-                                    className="mt-4 text-red-500 hover:underline"
+                                    className="mt-5 text-red-400 hover:text-red-500 text-sm"
                                 >
-                                    Cancel
+                                    Cancel Booking
                                 </button>
                             )}
                         </div>
@@ -122,13 +124,16 @@ const AllBooking = () => {
                 </div>
             </div>
 
-            {/* Modal Form */}
+            {/* Modal */}
             {showForm && (
-                <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center">
-                    <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-lg">
-                        <h2 className="text-xl font-bold mb-4">New Booking</h2>
+                <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center p-4 z-50">
+                    <div className="bg-gray-900 border border-gray-700 rounded-2xl p-8 w-full max-w-md shadow-2xl animate-fadeIn">
+                        <h2 className="text-2xl font-bold mb-6 text-center">
+                            New Booking
+                        </h2>
 
                         <form onSubmit={handleSubmit} className="space-y-4">
+
                             <input
                                 type="text"
                                 name="name"
@@ -136,14 +141,14 @@ const AllBooking = () => {
                                 value={formData.name}
                                 onChange={handleChange}
                                 required
-                                className="w-full border p-2 rounded"
+                                className="w-full bg-gray-800 border border-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
 
                             <select
                                 name="service"
                                 value={formData.service}
                                 onChange={handleChange}
-                                className="w-full border p-2 rounded"
+                                className="w-full bg-gray-800 border border-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             >
                                 <option>Standard Room</option>
                                 <option>Deluxe Room</option>
@@ -156,7 +161,7 @@ const AllBooking = () => {
                                 value={formData.date}
                                 onChange={handleChange}
                                 required
-                                className="w-full border p-2 rounded"
+                                className="w-full bg-gray-800 border border-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
 
                             <input
@@ -166,24 +171,25 @@ const AllBooking = () => {
                                 value={formData.price}
                                 onChange={handleChange}
                                 required
-                                className="w-full border p-2 rounded"
+                                className="w-full bg-gray-800 border border-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
 
-                            <div className="flex justify-end gap-3">
+                            <div className="flex justify-between gap-4 pt-4">
                                 <button
                                     type="button"
                                     onClick={() => setShowForm(false)}
-                                    className="px-4 py-2 bg-gray-300 rounded"
+                                    className="w-full py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-4 py-2 bg-blue-600 text-white rounded"
+                                    className="w-full py-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg hover:scale-105 transition transform"
                                 >
                                     Add Booking
                                 </button>
                             </div>
+
                         </form>
                     </div>
                 </div>
