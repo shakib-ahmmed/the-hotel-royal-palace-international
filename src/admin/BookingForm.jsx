@@ -5,26 +5,42 @@ const BookingForm = () => {
         fullName: "",
         email: "",
         phone: "",
+        address: "",
+        city: "",
+        country: "",
         checkIn: "",
         checkOut: "",
-        guests: 1,
+        adults: 1,
+        children: 0,
         roomType: "standard",
+        arrivalTime: "",
+        idNumber: "",
+        paymentMethod: "credit-card",
+        promoCode: "",
         requests: "",
+        agree: false,
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value, type, checked } = e.target;
+
         setFormData({
             ...formData,
-            [name]: value,
+            [name]: type === "checkbox" ? checked : value,
         });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!formData.fullName || !formData.email || !formData.checkIn || !formData.checkOut) {
-            alert("Please fill all required fields.");
+        if (
+            !formData.fullName ||
+            !formData.email ||
+            !formData.checkIn ||
+            !formData.checkOut ||
+            !formData.agree
+        ) {
+            alert("Please fill all required fields and accept terms.");
             return;
         }
 
@@ -33,134 +49,215 @@ const BookingForm = () => {
     };
 
     return (
-        <div style={styles.container}>
-            <h2 style={styles.title}>Hotel Booking Form</h2>
-            <form onSubmit={handleSubmit} style={styles.form}>
+        <div className="min-h-screen bg-gray-100 py-10 px-4">
+            <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl p-8">
 
-                <input
-                    type="text"
-                    name="fullName"
-                    placeholder="Full Name *"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    style={styles.input}
-                />
+                <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
+                    Hotel Booking Form
+                </h2>
 
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email *"
-                    value={formData.email}
-                    onChange={handleChange}
-                    style={styles.input}
-                />
+                <form onSubmit={handleSubmit} className="grid gap-6">
 
-                <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Phone Number"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    style={styles.input}
-                />
+                    {/* Personal Info */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <input
+                            type="text"
+                            name="fullName"
+                            placeholder="Full Name *"
+                            value={formData.fullName}
+                            onChange={handleChange}
+                            className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                        />
 
-                <div style={styles.row}>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Email *"
+                            value={formData.email}
+                            onChange={handleChange}
+                            className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                        />
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <input
+                            type="tel"
+                            name="phone"
+                            placeholder="Phone Number"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                        />
+
+                        <input
+                            type="text"
+                            name="idNumber"
+                            placeholder="Passport / ID Number"
+                            value={formData.idNumber}
+                            onChange={handleChange}
+                            className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                        />
+                    </div>
+
+                    {/* Address */}
                     <input
-                        type="date"
-                        name="checkIn"
-                        value={formData.checkIn}
+                        type="text"
+                        name="address"
+                        placeholder="Address"
+                        value={formData.address}
                         onChange={handleChange}
-                        style={styles.input}
+                        className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                     />
 
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <input
+                            type="text"
+                            name="city"
+                            placeholder="City"
+                            value={formData.city}
+                            onChange={handleChange}
+                            className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                        />
+
+                        <input
+                            type="text"
+                            name="country"
+                            placeholder="Country"
+                            value={formData.country}
+                            onChange={handleChange}
+                            className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                        />
+                    </div>
+
+                    {/* Dates */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <input
+                            type="date"
+                            name="checkIn"
+                            value={formData.checkIn}
+                            onChange={handleChange}
+                            className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                        />
+
+                        <input
+                            type="date"
+                            name="checkOut"
+                            value={formData.checkOut}
+                            onChange={handleChange}
+                            className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                        />
+                    </div>
+
+                    {/* Guests */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <select
+                            name="adults"
+                            value={formData.adults}
+                            onChange={handleChange}
+                            className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                        >
+                            {[1, 2, 3, 4].map((num) => (
+                                <option key={num} value={num}>
+                                    {num} Adult{num > 1 && "s"}
+                                </option>
+                            ))}
+                        </select>
+
+                        <select
+                            name="children"
+                            value={formData.children}
+                            onChange={handleChange}
+                            className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                        >
+                            {[0, 1, 2, 3].map((num) => (
+                                <option key={num} value={num}>
+                                    {num} Child{num !== 1 && "ren"}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* Room & Payment */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <select
+                            name="roomType"
+                            value={formData.roomType}
+                            onChange={handleChange}
+                            className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                        >
+                            <option value="standard">Standard Room</option>
+                            <option value="deluxe">Deluxe Room</option>
+                            <option value="suite">Suite</option>
+                            <option value="family">Family Room</option>
+                            <option value="presidential">Presidential Suite</option>
+                        </select>
+
+                        <select
+                            name="paymentMethod"
+                            value={formData.paymentMethod}
+                            onChange={handleChange}
+                            className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                        >
+                            <option value="credit-card">Credit Card</option>
+                            <option value="debit-card">Debit Card</option>
+                            <option value="paypal">PayPal</option>
+                            <option value="cash">Pay at Hotel</option>
+                        </select>
+                    </div>
+
+                    {/* Arrival */}
                     <input
-                        type="date"
-                        name="checkOut"
-                        value={formData.checkOut}
+                        type="time"
+                        name="arrivalTime"
+                        value={formData.arrivalTime}
                         onChange={handleChange}
-                        style={styles.input}
+                        className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                     />
-                </div>
 
-                <div style={styles.row}>
-                    <select
-                        name="guests"
-                        value={formData.guests}
+                    {/* Promo */}
+                    <input
+                        type="text"
+                        name="promoCode"
+                        placeholder="Promo Code"
+                        value={formData.promoCode}
                         onChange={handleChange}
-                        style={styles.input}
-                    >
-                        {[1, 2, 3, 4, 5].map((num) => (
-                            <option key={num} value={num}>
-                                {num} Guest{num > 1 && "s"}
-                            </option>
-                        ))}
-                    </select>
+                        className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                    />
 
-                    <select
-                        name="roomType"
-                        value={formData.roomType}
+                    {/* Special Requests */}
+                    <textarea
+                        name="requests"
+                        placeholder="Special Requests"
+                        value={formData.requests}
                         onChange={handleChange}
-                        style={styles.input}
+                        rows="4"
+                        className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                    />
+
+                    {/* Terms */}
+                    <label className="flex items-center gap-2 text-sm text-gray-600">
+                        <input
+                            type="checkbox"
+                            name="agree"
+                            checked={formData.agree}
+                            onChange={handleChange}
+                            className="w-4 h-4"
+                        />
+                        I agree to the hotel terms and conditions *
+                    </label>
+
+                    {/* Button */}
+                    <button
+                        type="submit"
+                        className="bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold"
                     >
-                        <option value="standard">Standard Room</option>
-                        <option value="deluxe">Deluxe Room</option>
-                        <option value="suite">Suite</option>
-                    </select>
-                </div>
+                        Book Now
+                    </button>
 
-                <textarea
-                    name="requests"
-                    placeholder="Special Requests"
-                    value={formData.requests}
-                    onChange={handleChange}
-                    style={{ ...styles.input, height: "80px" }}
-                />
-
-                <button type="submit" style={styles.button}>
-                    Book Now
-                </button>
-            </form>
+                </form>
+            </div>
         </div>
     );
-};
-
-const styles = {
-    container: {
-        maxWidth: "500px",
-        margin: "40px auto",
-        padding: "20px",
-        borderRadius: "10px",
-        boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-        backgroundColor: "#fff",
-    },
-    title: {
-        textAlign: "center",
-        marginBottom: "20px",
-    },
-    form: {
-        display: "flex",
-        flexDirection: "column",
-        gap: "15px",
-    },
-    input: {
-        padding: "10px",
-        borderRadius: "5px",
-        border: "1px solid #ccc",
-        width: "100%",
-    },
-    row: {
-        display: "flex",
-        gap: "10px",
-    },
-    button: {
-        padding: "12px",
-        borderRadius: "5px",
-        border: "none",
-        backgroundColor: "#007bff",
-        color: "#fff",
-        cursor: "pointer",
-        fontWeight: "bold",
-    },
 };
 
 export default BookingForm;
