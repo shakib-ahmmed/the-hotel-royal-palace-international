@@ -17,14 +17,6 @@ const initialBookings = [
         status: "Pending",
         price: "$400",
     },
-    {
-        id: 3,
-        name: "Michael Lee",
-        service: "Single Room",
-        date: "25 Feb 2026",
-        status: "Cancelled",
-        price: "$120",
-    },
 ];
 
 const statusColors = {
@@ -35,38 +27,47 @@ const statusColors = {
 
 const AllBooking = () => {
     const [bookings, setBookings] = useState(initialBookings);
+    const [showForm, setShowForm] = useState(false);
 
-    const handleCancel = (id) => {
-        const updated = bookings.map((booking) =>
-            booking.id === id
-                ? { ...booking, status: "Cancelled" }
-                : booking
-        );
-        setBookings(updated);
+    const [formData, setFormData] = useState({
+        name: "",
+        service: "Standard Room",
+        date: "",
+        price: "",
+    });
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
     };
 
-    const handleView = (booking) => {
-        alert(
-            `Booking Details:
-Customer: ${booking.name}
-Room: ${booking.service}
-Date: ${booking.date}
-Price: ${booking.price}
-Status: ${booking.status}`
-        );
-    };
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-    const handleNewBooking = () => {
         const newBooking = {
             id: bookings.length + 1,
-            name: "New Customer",
-            service: "Standard Room",
-            date: "28 Feb 2026",
+            ...formData,
             status: "Pending",
-            price: "$180",
         };
 
         setBookings([...bookings, newBooking]);
+        setShowForm(false);
+        setFormData({
+            name: "",
+            service: "Standard Room",
+            date: "",
+            price: "",
+        });
+    };
+
+    const handleCancelBooking = (id) => {
+        setBookings(
+            bookings.map((booking) =>
+                booking.id === id ? { ...booking, status: "Cancelled" } : booking
+            )
+        );
     };
 
     return (
@@ -74,71 +75,119 @@ Status: ${booking.status}`
             <div className="max-w-7xl mx-auto">
 
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+                <div className="flex justify-between items-center mb-8">
                     <h1 className="text-3xl font-bold text-gray-800">
                         All Bookings ({bookings.length})
                     </h1>
                     <button
-                        onClick={handleNewBooking}
-                        className="mt-4 md:mt-0 px-5 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
+                        onClick={() => setShowForm(true)}
+                        className="px-5 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
                     >
                         + New Booking
                     </button>
                 </div>
 
-                {/* Booking Grid */}
-                <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {/* Booking Cards */}
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {bookings.map((booking) => (
                         <div
                             key={booking.id}
-                            className="bg-white rounded-2xl shadow-md hover:shadow-xl transition p-6"
+                            className="bg-white rounded-2xl shadow-md p-6"
                         >
-                            <div className="flex justify-between items-center mb-4">
-                                <h2 className="text-lg font-semibold text-gray-800">
+                            <div className="flex justify-between mb-3">
+                                <h2 className="font-semibold text-lg">
                                     {booking.service}
                                 </h2>
                                 <span
-                                    className={`px-3 py-1 text-sm rounded-full font-medium ${statusColors[booking.status]}`}
+                                    className={`px-3 py-1 text-sm rounded-full ${statusColors[booking.status]}`}
                                 >
                                     {booking.status}
                                 </span>
                             </div>
 
-                            <div className="space-y-2 text-gray-600">
-                                <p>
-                                    <span className="font-medium">Customer:</span>{" "}
-                                    {booking.name}
-                                </p>
-                                <p>
-                                    <span className="font-medium">Date:</span> {booking.date}
-                                </p>
-                                <p>
-                                    <span className="font-medium">Price:</span> {booking.price}
-                                </p>
-                            </div>
+                            <p><strong>Customer:</strong> {booking.name}</p>
+                            <p><strong>Date:</strong> {booking.date}</p>
+                            <p><strong>Price:</strong> ${booking.price}</p>
 
-                            <div className="mt-6 flex justify-between">
+                            {booking.status !== "Cancelled" && (
                                 <button
-                                    onClick={() => handleView(booking)}
-                                    className="text-blue-600 hover:underline"
+                                    onClick={() => handleCancelBooking(booking.id)}
+                                    className="mt-4 text-red-500 hover:underline"
                                 >
-                                    View
+                                    Cancel
                                 </button>
-
-                                {booking.status !== "Cancelled" && (
-                                    <button
-                                        onClick={() => handleCancel(booking.id)}
-                                        className="text-red-500 hover:underline"
-                                    >
-                                        Cancel
-                                    </button>
-                                )}
-                            </div>
+                            )}
                         </div>
                     ))}
                 </div>
-
             </div>
+
+            {/* Modal Form */}
+            {showForm && (
+                <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center">
+                    <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-lg">
+                        <h2 className="text-xl font-bold mb-4">New Booking</h2>
+
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Customer Name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                                className="w-full border p-2 rounded"
+                            />
+
+                            <select
+                                name="service"
+                                value={formData.service}
+                                onChange={handleChange}
+                                className="w-full border p-2 rounded"
+                            >
+                                <option>Standard Room</option>
+                                <option>Deluxe Room</option>
+                                <option>Suite Room</option>
+                            </select>
+
+                            <input
+                                type="date"
+                                name="date"
+                                value={formData.date}
+                                onChange={handleChange}
+                                required
+                                className="w-full border p-2 rounded"
+                            />
+
+                            <input
+                                type="number"
+                                name="price"
+                                placeholder="Price"
+                                value={formData.price}
+                                onChange={handleChange}
+                                required
+                                className="w-full border p-2 rounded"
+                            />
+
+                            <div className="flex justify-end gap-3">
+                                <button
+                                    type="button"
+                                    onClick={() => setShowForm(false)}
+                                    className="px-4 py-2 bg-gray-300 rounded"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="px-4 py-2 bg-blue-600 text-white rounded"
+                                >
+                                    Add Booking
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
