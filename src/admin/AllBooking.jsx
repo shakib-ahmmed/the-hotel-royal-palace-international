@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-const bookings = [
+const initialBookings = [
     {
         id: 1,
         name: "John Doe",
@@ -34,14 +34,54 @@ const statusColors = {
 };
 
 const AllBooking = () => {
+    const [bookings, setBookings] = useState(initialBookings);
+
+    const handleCancel = (id) => {
+        const updated = bookings.map((booking) =>
+            booking.id === id
+                ? { ...booking, status: "Cancelled" }
+                : booking
+        );
+        setBookings(updated);
+    };
+
+    const handleView = (booking) => {
+        alert(
+            `Booking Details:
+Customer: ${booking.name}
+Room: ${booking.service}
+Date: ${booking.date}
+Price: ${booking.price}
+Status: ${booking.status}`
+        );
+    };
+
+    const handleNewBooking = () => {
+        const newBooking = {
+            id: bookings.length + 1,
+            name: "New Customer",
+            service: "Standard Room",
+            date: "28 Feb 2026",
+            status: "Pending",
+            price: "$180",
+        };
+
+        setBookings([...bookings, newBooking]);
+    };
+
     return (
         <div className="min-h-screen bg-gray-50 p-6">
             <div className="max-w-7xl mx-auto">
 
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-                    <h1 className="text-3xl font-bold text-gray-800">All Bookings</h1>
-                    <button className="mt-4 md:mt-0 px-5 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
+                    <h1 className="text-3xl font-bold text-gray-800">
+                        All Bookings ({bookings.length})
+                    </h1>
+                    <button
+                        onClick={handleNewBooking}
+                        className="mt-4 md:mt-0 px-5 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
+                    >
                         + New Booking
                     </button>
                 </div>
@@ -65,18 +105,34 @@ const AllBooking = () => {
                             </div>
 
                             <div className="space-y-2 text-gray-600">
-                                <p><span className="font-medium">Customer:</span> {booking.name}</p>
-                                <p><span className="font-medium">Date:</span> {booking.date}</p>
-                                <p><span className="font-medium">Price:</span> {booking.price}</p>
+                                <p>
+                                    <span className="font-medium">Customer:</span>{" "}
+                                    {booking.name}
+                                </p>
+                                <p>
+                                    <span className="font-medium">Date:</span> {booking.date}
+                                </p>
+                                <p>
+                                    <span className="font-medium">Price:</span> {booking.price}
+                                </p>
                             </div>
 
                             <div className="mt-6 flex justify-between">
-                                <button className="text-blue-600 hover:underline">
+                                <button
+                                    onClick={() => handleView(booking)}
+                                    className="text-blue-600 hover:underline"
+                                >
                                     View
                                 </button>
-                                <button className="text-red-500 hover:underline">
-                                    Cancel
-                                </button>
+
+                                {booking.status !== "Cancelled" && (
+                                    <button
+                                        onClick={() => handleCancel(booking.id)}
+                                        className="text-red-500 hover:underline"
+                                    >
+                                        Cancel
+                                    </button>
+                                )}
                             </div>
                         </div>
                     ))}
