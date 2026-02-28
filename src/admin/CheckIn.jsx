@@ -38,13 +38,28 @@ const CheckIn = () => {
     },
   ];
 
+  const handleNewCheckIn = () => {
+    console.log("New Guest Check-In Clicked");
+    // Later you can navigate or open modal here
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black p-6">
       <div className="max-w-7xl mx-auto bg-gray-900/70 backdrop-blur-xl border border-gray-700 rounded-2xl shadow-2xl p-6">
-        
-        <h1 className="text-3xl font-bold text-white mb-6">
-          All Guest Check-Ins
-        </h1>
+
+        {/* Header + Button */}
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-3xl font-bold text-white">
+            All Guest Check-Ins
+          </h1>
+
+          <button
+            onClick={handleNewCheckIn}
+            className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-lg transition duration-300"
+          >
+            + New Guest Check-In
+          </button>
+        </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-gray-300 border-collapse">
@@ -78,11 +93,10 @@ const CheckIn = () => {
 
                   <td className="p-4">
                     <span
-                      className={`px-3 py-1 rounded-full text-sm font-medium ${
-                        guest.payment === "Paid"
-                          ? "bg-green-500/20 text-green-400"
-                          : "bg-yellow-500/20 text-yellow-400"
-                      }`}
+                      className={`px-3 py-1 rounded-full text-sm font-medium ${guest.payment === "Paid"
+                        ? "bg-green-500/20 text-green-400"
+                        : "bg-yellow-500/20 text-yellow-400"
+                        }`}
                     >
                       {guest.payment}
                     </span>
@@ -90,11 +104,10 @@ const CheckIn = () => {
 
                   <td className="p-4">
                     <span
-                      className={`px-3 py-1 rounded-full text-sm font-medium ${
-                        guest.status === "Checked-In"
-                          ? "bg-blue-500/20 text-blue-400"
-                          : "bg-gray-500/20 text-gray-300"
-                      }`}
+                      className={`px-3 py-1 rounded-full text-sm font-medium ${guest.status === "Checked-In"
+                        ? "bg-blue-500/20 text-blue-400"
+                        : "bg-gray-500/20 text-gray-300"
+                        }`}
                     >
                       {guest.status}
                     </span>
