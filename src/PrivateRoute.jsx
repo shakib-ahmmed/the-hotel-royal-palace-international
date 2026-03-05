@@ -7,7 +7,6 @@ function PrivateRoute({ children }) {
     const location = useLocation();
 
     if (!isAuthenticated) {
-        // Redirect to login and store attempted location
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
