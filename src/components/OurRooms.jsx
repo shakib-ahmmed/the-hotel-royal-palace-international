@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const rooms = [
-    
+    {
+        id: 1,
+        name: "Deluxe Room",
+        price: "2,500BDT / night",
+        image:
+            "/Deluxe.JPG",
+    },
     {
         id: 2,
         name: "Modern King",
